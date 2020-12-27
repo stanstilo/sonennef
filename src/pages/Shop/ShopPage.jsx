@@ -4,11 +4,9 @@ import CollectionPreview from '../../components/CollectionPreview/CollectionPrev
 
 
 class ShopPage extends Component {
-
     state = {
         collections : SHOP_DATA
     }
-
     render() {
         const {collections} = this.state
         return (
