@@ -6,24 +6,16 @@ import 'react-slideshow-image/dist/styles.css'
 import 'swiper/swiper.scss';
 import 'swiper/components/effect-fade/effect-fade.scss';
 import 'font-awesome/css/font-awesome.min.css';
-import "./index.css"
-import { CometChat } from '@cometchat-pro/chat';
+import "./index.css";
+import { Provider } from 'react-redux'
+import store from './store/store';
 
  
-var appID = "255028b6ef4d379";
-var region = "REGION";
-var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
-CometChat.init(appID, appSetting).then(
-  () => {
-    console.log("Initialization completed successfully");
-  },
-  error => {
-    console.log("Initialization failed with error:", error);
-  }
-);
 ReactDOM.render(
+  <Provider store={store}>
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
