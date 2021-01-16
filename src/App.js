@@ -5,10 +5,9 @@ import HomePage from './pages/HomePage/HomePage'
 import ShopPage from './pages/Shop/ShopPage'
 import './App.css'
 import Auth from './pages/Auth/Auth'
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 class App extends Component {
-
   state = {
     currentUser: null
   }
@@ -16,10 +15,22 @@ class App extends Component {
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser:user});
-      console.log(user);
-    })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // this.setState({currentUser:user}); 
+      if(userAuth){
+        const userRef = createUserProfileDocument(userAuth) 
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser:{
+              id:snapShot.id,
+              ...snapShot.data()
+            }
+          })
+        }) 
+      }
+      this.setState({ currentUser: userAuth})
+      
+    }) 
   }
 
   componentWillUnmount(){
@@ -30,7 +41,7 @@ class App extends Component {
   render() {
     return ( 
     <>
-    <Header currentUser = {this.state.currentUser}/>
+         <Header currentUser = {this.state.currentUser}/>
           <Switch>
             <Route path='/' exact component={HomePage}></Route>
              <Route path='/shop' component = {ShopPage}></Route>
