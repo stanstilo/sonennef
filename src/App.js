@@ -3,9 +3,9 @@ import {Route, Switch} from 'react-router-dom'
 import Header from './components/Header/Header'
 import HomePage from './pages/HomePage/HomePage'
 import ShopPage from './pages/Shop/ShopPage'
-import './App.css'
-import Auth from './pages/Auth/Auth'
+import SignInAndSignUp from './pages/SignIn-And-SignUp/SignIn-And-SignUp'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import './App.css'
 
 class App extends Component {
   state = {
@@ -16,11 +16,10 @@ class App extends Component {
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      // this.setState({currentUser:user}); 
       if(userAuth){
-        const userRef = createUserProfileDocument(userAuth) 
-        userRef.onSnapshot(snapShot => {
-          this.setState({
+        const userR = await createUserProfileDocument(userAuth) 
+       userR.onSnapshot(snapShot => {
+          this.setState({ 
             currentUser:{
               id:snapShot.id,
               ...snapShot.data()
@@ -28,8 +27,7 @@ class App extends Component {
           })
         }) 
       }
-      this.setState({ currentUser: userAuth})
-      
+      this.setState({ currentUser: userAuth})  
     }) 
   }
 
@@ -38,14 +36,14 @@ class App extends Component {
   }
 
 
-  render() {
+render() {
     return ( 
     <>
          <Header currentUser = {this.state.currentUser}/>
           <Switch>
             <Route path='/' exact component={HomePage}></Route>
              <Route path='/shop' component = {ShopPage}></Route>
-             <Route path='/signin' component = {Auth}></Route>
+             <Route path='/signin' component = {SignInAndSignUp}></Route>
           </Switch>
     </>
     )
