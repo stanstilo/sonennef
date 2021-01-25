@@ -7,7 +7,7 @@ import './cart-icon.styles.scss'
 const CartIcon = ({toggleCartHidden}) =>  {
     return (
         <div className = 'cart-icon' onClick={toggleCartHidden}>
-            <FaShoppingBag classNAME = 'shopping-bag' />
+            <FaShoppingBag className = 'shopping-bag' />
             <span className='item-count'>0</span>
         </div>
     )
