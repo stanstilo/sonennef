@@ -1,7 +1,7 @@
 import React from 'react'
 import {FaShoppingBag} from 'react-icons/fa';
 import { connect } from 'react-redux'
-import { toggleCartHidden } from '../../store/actions/cart.actions';
+import { toggleCartHidden } from '../../store/actions/cart/cart.actions';
 import './cart-icon.styles.scss'
 
 const CartIcon = ({toggleCartHidden}) =>  {
