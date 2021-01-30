@@ -6,7 +6,7 @@ import ShopPage from "./pages/Shop/ShopPage";
 import SignInAndSignUp from "./pages/SignIn-And-SignUp/SignIn-And-SignUp";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { connect } from "react-redux";
-import { setCurrentUser } from "./store/actions/user.actions";
+import { setCurrentUser } from "./store/actions/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./store/reducers/selector";
 import CheckoutPage from "./pages/Checkout/Checkout";
