@@ -1,5 +1,5 @@
-import * as actionTypes from '../actions/actionTypes'
-import { addItemToCart,  removeItemFromCart } from '../actions/cart/cart.utils'
+import * as actionTypes from '../../actions/actionTypes'
+import { addItemToCart,  removeItemFromCart } from '../../actions/cart/cart.utils'
 
 
 const INITIAL_STATE = {

@@ -29,3 +29,11 @@ export const selectCartTotal = createSelector(
   [selectCartItems],
   cartItems => cartItems.reduce((accumulatedQuantity, cartItem)=>accumulatedQuantity + cartItem.quantity * cartItem.price, 0)
 )
+
+export const selectDirectory = state => state.directory
+
+export const selectDirectorySections = createSelector(
+  [selectDirectory], 
+   directory => directory.sections
+)
+
