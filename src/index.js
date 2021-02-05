@@ -9,15 +9,15 @@ import 'font-awesome/css/font-awesome.min.css';
 import "./index.css";
 import { Provider } from 'react-redux'
 import {store, persistor} from './store/store';
-import { persistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react'
 
  
 ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
-   <persistGate persistor={persistor}>
+   <PersistGate persistor={persistor}>
     <App />
-    </persistGate >
+    </PersistGate>
   </BrowserRouter>
   </Provider>,
   document.getElementById('root')
